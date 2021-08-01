@@ -24,3 +24,5 @@ Login with admin(username must)
 > password: 1234
 1. login with the admin(webste, not the admin panel)
 2. click on the chat and start conversation
+
+**only admin can see the chats created by the users
