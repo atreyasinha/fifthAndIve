@@ -20,5 +20,7 @@ Go to the profile
 1. click on chats
 
 Login with admin(username must)
+> username: admin
+> password: 1234
 1. login with the admin(webste, not the admin panel)
 2. click on the chat and start conversation
