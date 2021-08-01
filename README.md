@@ -3,7 +3,9 @@
 Ecommerce website
 
 
-### For Django Channels/Websocket
+### Start the project
 
-Run this command
+> python manage.py makemigrations
+> python manage.py migrate
 > docker run -p 6379:6379 -d redis:5
+> python manage.py runserver
