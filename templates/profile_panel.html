@@ -1,0 +1,44 @@
+{% block panel %} 
+<div class="col-4">
+    <div
+        class="card d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
+        style="width: 280px"
+    >
+        <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+                <a href="{% url 'profile' %}" class="nav-link text-white {{home_active}}" aria-current="page">
+                    <svg class="bi me-2" width="16" height="16">
+                        <use xlink:href="#home"></use>
+                    </svg>
+                    Home
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'orders' %}" class="nav-link text-white {{order_active}}">
+                    <svg class="bi me-2" width="16" height="16">
+                        <use xlink:href="#table"></use>
+                    </svg>
+                    Orders
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'addresses' %}" class="nav-link text-white {{address_active}}">
+                    <svg class="bi me-2" width="16" height="16">
+                        <use xlink:href="#grid"></use>
+                    </svg>
+                    Addresses
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'chats' %}" class="nav-link text-white {{chat_active}}">
+                    <svg class="bi me-2" width="16" height="16">
+                        <use xlink:href="#people-circle"></use>
+                    </svg>
+                    Chat
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

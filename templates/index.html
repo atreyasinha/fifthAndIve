@@ -1,0 +1,173 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- Categories -->
+<div class="container">
+    <div class="nav-scroller py-1 mb-2">
+        <div
+            class="btn-group d-flex justify-content-between"
+            role="group"
+            aria-label="Basic outlined example"
+        >
+            <a href="{% url 'home' %}" class="btn btn-outline-primary"> All </a>
+            <a href="{% url 'filter' 'CS' %}" class="btn btn-outline-primary">
+                Clothing and Shoes
+            </a>
+            <a href="{% url 'filter' 'JA' %}" class="btn btn-outline-primary">
+                Jewelry and Accessories
+            </a>
+            <a href="{% url 'filter' 'HG' %}" class="btn btn-outline-primary">
+                Home Goods
+            </a>
+            <a href="{% url 'filter' 'E' %}" class="btn btn-outline-primary">
+                Entertainment
+            </a>
+            <a href="{% url 'filter' 'TECH' %}" class="btn btn-outline-primary">
+                Technology
+            </a>
+            <a href="{% url 'filter' 'TO' %}" class="btn btn-outline-primary">
+                Toys
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Products -->
+<div class="container px-4 py-5" id="custom-cards">
+    <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        
+
+
+        {% if user.get_username == 'admin' %}
+            <div><h1>Chat</h1></div>
+
+            {% for c in chatsLinks %} 
+
+                <div class="col-sm-6">
+
+                    <a href="{{ c.link }}" style="text-decoration: none"> 
+                        <div class="card">
+                            <div class="card-body">
+                                <p class="card-text">{{c.room}}</p>
+                                <p class="card-text">{{c.user}}</p>
+                            </div>
+                        </div>
+                    </a>
+                    
+                    <br><br>
+
+                </div>
+            {% endfor %}
+
+            <div><h1>Orders</h1>
+                <div class="alert alert-danger" role="alert">
+                    Under progress
+                  </div></div>
+            
+
+            <div><h1>Profit</h1>
+                <div class="alert alert-danger" role="alert">
+                    Under progress
+                  </div></div>
+            
+
+
+        {% else %}
+
+            {% for p in products %}
+
+            <div class="col">
+                <a href="{% url 'product' p.id %}" style="text-decoration: none">
+                    <div
+                        class="
+                            card card-cover
+                            h-100
+                            overflow-hidden
+                            text-white
+                            bg-dark
+                            rounded-5
+                            shadow-lg
+                        "
+                        style="background-image: url('{{ p.image.url }}');background-position: center;
+                                background-repeat: no-repeat;
+                                background-size: cover;"
+                    >
+                        <div
+                            class="
+                                d-flex
+                                flex-column
+                                h-100
+                                p-5
+                                pb-3
+                                text-white text-shadow-1
+                            "
+                        >
+                            <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">
+                                {{ p.description }}
+                            </h2>
+                            <ul class="d-flex list-unstyled mt-auto">
+                                <li class="d-flex align-items-center">
+                                    <svg class="bi me-2" width="1em" height="1em">
+                                        <use xlink:href="#geo-fill"></use>
+                                    </svg>
+                                    <small class="badge bg-info text-dark"
+                                        >{{ p.title }}</small
+                                    >
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <svg class="bi me-2" width="1em" height="1em">
+                                        <use xlink:href="#calendar3"></use>
+                                    </svg>
+                                    <h3>
+                                        <small class="badge bg-light text-dark"
+                                            >${{ p.price }}</small
+                                        >
+                                    </h3>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            {% endfor %}
+        {% endif %}
+
+
+        
+    </div>
+</div>
+
+<!-- About Us -->
+<div class="container my-5">
+    <div
+        class="
+            row
+            p-4
+            pb-0
+            pe-lg-0
+            pt-lg-5
+            align-items-center
+            rounded-3
+            border
+            shadow-lg
+        "
+    >
+        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+            <h1 class="display-4 fw-bold lh-1">About Us</h1>
+            <br>
+            <p class="lead">
+                Fastest growing ecommerce in your very own Chico, California.
+                Shipped by the wildcats! Backed by Ebay top reseller!
+            </p>
+        </div>
+        <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg">
+            <img
+                class="rounded-lg-3"
+                src="{% static '/img/about-us-image.jpg' %}"
+                alt="Mathias"
+                width="500"
+            />
+        </div>
+    </div>
+</div>
+{% endblock %}

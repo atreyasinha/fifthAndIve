@@ -1,0 +1,41 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<h1 class="text-center">Welcome</h1>
+
+<br />
+<br />
+
+<div class="container">
+    <div class="row">
+        {% include 'profile_panel.html' %}
+        <div class="col-8">
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Ask us!</h4>
+                <br>
+
+                <h5>Title</h5>
+                <input id="room-name-input" class="form-control" type="text"><br>
+                <input id="room-name-submit" class="btn btn-primary" type="button" value="Enter">
+
+                <script>
+                    document.querySelector('#room-name-input').focus();
+                    document.querySelector('#room-name-input').onkeyup = function(e) {
+                        if (e.keyCode === 13) {  // enter, return
+                            document.querySelector('#room-name-submit').click();
+                        }
+                    };
+
+                    document.querySelector('#room-name-submit').onclick = function(e) {
+                        var roomName = document.querySelector('#room-name-input').value;
+                        window.location.pathname = '/chats/' + roomName + '/';
+                    };
+                </script>
+
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

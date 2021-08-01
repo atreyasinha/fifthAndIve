@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<h1 class="text-center">Welcome</h1>
+
+<br />
+<br />
+
+<div class="container">
+    <div class="row">
+        {% include 'profile_panel.html' %}
+        <div class="col-8">
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">My Orders</h4>    
+                <br>    
+                <div class="row">
+                        {% for o in orders %} 
+
+                        <div class="col">
+
+                            <div class="card">
+                                <img src="{{ o.product.image.url }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                <h5 class="card-title">{{ o.product.description }}</h5>
+                                <p class="card-text">${{ o.product.price }}</p>
+
+                                {% if o.status == 'Order Received' %}
+                                <span class="btn btn-light">{{ o.status }}</span>  
+
+                                {% elif o.status == 'Order Cancelled' %}
+                                <span class="btn btn-danger">{{ o.status }}</span>  
+
+                                {% elif o.status == 'Packaging Done' %}
+                                <span class="btn btn-warning">{{ o.status }}</span>  
+
+                                {% elif o.status == 'On your way' %}
+                                <span class="btn btn-info">{{ o.status }}</span>  
+
+                                {% elif o.status == 'Delivered' %}
+                                <span class="btn btn-success">{{ o.status }}</span>  
+
+                                {% elif o.status == 'Order Complete' %}
+                                <span class="btn btn-success">{{ o.status }}</span>  
+
+                                {% else %}
+                                <span class="btn btn-dark">{{ o.status }}</span>  
+                                {% endif %}                              
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

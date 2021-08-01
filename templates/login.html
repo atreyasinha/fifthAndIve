@@ -1,0 +1,40 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<!-- main -->
+<div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">Login</h1>
+    <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Fastest growing online store in Chico</p>
+        <br />
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+            <div class="col-md-10 mx-auto col-lg-5">
+                <form
+                    class="p-4 p-md-5 border rounded-3 bg-light"
+                    action=""
+                    method="POST"
+                >
+                    {% csrf_token %} {% for f in form %} {{f.label_tag}}
+                    <div class="form-floating mb-3">{{f}}</div>
+                    <small class="text-danger"> {{f.errors|striptags}} </small>
+
+                    {% endfor %}
+                    <button class="w-100 btn btn-lg btn-primary" type="submit">
+                        Login
+                    </button>
+
+                    <hr class="my-4" />
+                    <small class="text-muted"
+                        >New to us!
+                        <a href="{% url 'register' %}">Click here</a></small
+                    >
+                    {% if form.non_field_errors %}
+                        {% for e in form.non_field_errors %}
+                            <p class="alert alert-danger my-3">{{e}}</p>
+                        {% endfor %}
+                    {% endif %}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

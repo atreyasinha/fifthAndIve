@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<!-- main -->
+<div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+        <div class="col-lg-7 text-center text-lg-start">
+            <h1 class="display-4 fw-bold lh-1 mb-3">Sign Up</h1>
+            <p class="col-lg-10 fs-4">
+                Become a member of the fastest growing online store in
+                Chico.
+            </p>
+        </div>
+        <div class="col-md-10 mx-auto col-lg-5">
+            <form
+                class="p-4 p-md-5 border rounded-3 bg-light"
+                action=""
+                method="post"
+            >
+                {% csrf_token %}
+                {% for f in form %} 
+                {{f.label_tag}}
+                <div class="form-floating mb-3">{{f}}</div>
+                <div><small class="text-danger">
+                    {{f.errors|striptags}}
+                </small></div>
+                
+
+                {% endfor %}
+                <input
+                    class="w-100 btn btn-lg btn-primary"
+                    type="submit"
+                    value="Sign up"
+                >
+            </input>
+
+                <small class="text-muted"
+                    >By clicking Sign up, you agree to the terms of
+                    use.</small
+                >
+
+                <hr class="my-4" />
+                <small class="text-muted"
+                    >If you are an existing user!
+                    <a href="{% url 'login' %}">Click here</a></small
+                >
+                {% if form.non_field_errors %}
+                    {% for e in form.non_field_errors %}
+                        <p class="alert alert-danger my-3">{{e}}</p>
+                    {% endfor %}
+                {% endif %}
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

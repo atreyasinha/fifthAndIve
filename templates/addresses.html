@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<h1 class="text-center">Welcome</h1>
+
+<br />
+<br />
+
+<div class="container">
+    <div class="row">
+        {% include 'profile_panel.html' %}
+        <div class="col-8">
+            <div class="col-md-7 col-lg-8">
+                <h4 class="mb-3">Saved Addresses</h4>    
+                <br>    
+                <div class="row">
+                        {% for a in user_addresses %} 
+
+                        <div class="col-sm-6">
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <p class="card-text">{{a.first_name}} {{a.last_name}}</p>
+                                    <p class="card-text">{{a.street_address}}</p>
+                                    <p class="card-text">{{a.apt_house}}</p>
+                                    <p class="card-text">{{a.city}}, {{a.state}} {{a.zipcode}}</p>
+                                    <p class="card-text">{{a.phone_number}}</p>
+                                </div>
+                            </div>
+                            <br><br>
+
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                <br />
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

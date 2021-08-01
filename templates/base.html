@@ -1,0 +1,195 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+        <title>5thAndIve | {% block title %} {% endblock title %}</title>
+    </head>
+    <body>
+        <!-- Header -->
+        <header class="p-3 mb-3 border-bottom">
+            <div class="container">
+                <div
+                    class="
+                        d-flex
+                        flex-wrap
+                        align-items-center
+                        justify-content-center justify-content-lg-start
+                    "
+                >
+                    <a
+                        href="/"
+                        class="
+                            d-flex
+                            align-items-center
+                            mb-2 mb-lg-0
+                            text-dark text-decoration-none
+                        "
+                    >
+                        <svg
+                            class="bi me-2"
+                            width="40"
+                            height="32"
+                            role="img"
+                            aria-label="Bootstrap"
+                        >
+                            <use xlink:href="#bootstrap"></use>
+                        </svg>
+                    </a>
+
+                    <ul
+                        class="
+                            nav
+                            col-12 col-lg-auto
+                            me-lg-auto
+                            mb-2
+                            justify-content-center
+                            mb-md-0
+                        "
+                    >
+                        <li>
+                            <a
+                                href="{% url 'home' %}"
+                                class="nav-link px-2 link-secondary"
+                                >5thAndIve</a
+                            >
+                        </li>
+                    </ul>
+
+                    {% if request.user.is_authenticated %}
+                    <div class="dropdown text-end">
+                        <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+
+                            <li class="nav-link px-2 link-secondary">
+                                <a
+                                    href="{% url 'cart-details' %}"
+                                    class="btn btn-outline-warning"
+                                    id="cart"
+                                >
+                                    <img
+                                        src="https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F19%2F2019%2F02%2F11%2FGettyImages-84909131-2000.jpg"
+                                        alt="mdo"
+                                        width="15"
+                                        height="15"
+                                    />
+                                    Cart
+                                </a>
+                            </li>
+                            <li class="nav-link px-2 link-secondary">
+                                <a
+                                    href="#"
+                                    class="
+                                        d-block
+                                        link-dark
+                                        text-decoration-none
+                                        dropdown-toggle
+                                    "
+                                    id="dropdownUser1"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    <img
+                                        src="https://i.pinimg.com/564x/d9/56/9b/d9569bbed4393e2ceb1af7ba64fdf86a.jpg"
+                                        alt="mdo"
+                                        width="32"
+                                        height="32"
+                                        class="rounded-circle"
+                                    />
+                                </a>
+                                <ul
+                                    class="dropdown-menu text-small"
+                                    aria-labelledby="dropdownUser1"
+                                >
+                                    <li>
+                                        <a class="dropdown-item" href="{% url 'orders' %}"
+                                            >Orders</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="{% url 'profile' %}"
+                                            >Profile</a
+                                        >
+                                    </li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="{% url 'logout' %}"
+                                            >Sign out</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {% else %}
+                    <ul class="nav col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                        <li class="nav-link px-2 link-secondary">
+                            <a
+                                class="btn btn-outline-success"
+                                href="{% url 'login' %}"
+                                >Login</a
+                            >
+                        </li>
+                        <li class="nav-link px-2 link-secondary">
+                            <a
+                                class="btn btn-outline-warning"
+                                href="{% url 'register' %}"
+                                >Register</a
+                            >
+                        </li>
+                    </ul>
+                    {% endif %}
+                </div>
+            </div>
+        </header>
+
+
+        <br />
+
+        {% block content %} {% endblock %}
+
+        <!-- Footer -->
+        <br />
+        <div class="alert alert-dark text-center" role="alert">
+            Free shipping with $75 purchase.
+        </div>
+        <footer class="text-muted py-5">
+            <div class="container text-center">
+                <p class="mb-1">© 2021 5thAndIve.com, Inc.</p>
+                <br />
+                <nav class="nav d-flex justify-content-between">
+                    <a class="p-2 link-secondary" href="#"
+                        >Terms & Conditions</a
+                    >
+                    <a class="p-2 link-secondary" href="#">Privacy Policy</a>
+                    <a class="p-2 link-secondary" href="#">About Us</a>
+                    <a class="p-2 link-secondary" href="#"
+                        >Return/Exchange Policy</a
+                    >
+                    <a class="p-2 link-secondary" href="{% url 'chats' %}">Contact Us</a>
+                </nav>
+            </div>
+        </footer>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="{% static '/js/script.js' %}"></script>
+    </body>
+</html>
