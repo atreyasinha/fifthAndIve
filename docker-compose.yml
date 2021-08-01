@@ -11,9 +11,9 @@ web_migrate:
 chat_run:
     extends:
         service: web
-    command: python3 manage.py migrate
+    command: docker run -p 6379:6379 -d redis:5
 web_run:
-    extends: docker run -p 6379:6379 -d redis:5
+    extends: 
         service: web
     command: python3 manage.py runserver 0.0.0.0:8000
     ports:
